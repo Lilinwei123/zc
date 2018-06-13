@@ -2,7 +2,7 @@
 a{text-decoration: none;}
 li{list-style-type: none;}
 body{font-family: "寰蒋闆呴粦";}
-#page-wrapper{position:absolute;width:100%;left:0;overflow:hidden;z-index:0;}
+#page-wrapper{position:relative;width:100%;left:0;overflow:hidden;z-index:0;}
 #content-wrapper{position:relative;left:0;height:100%;}
 #hd{background:red none scroll 0% 0%;width:100%;overflow:hidden;position:relative;z-index:1;border-top:1px solid rgb(221,221,221);}
 #hd .z{height:45px;padding-left:15px;}
