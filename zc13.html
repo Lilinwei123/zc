@@ -16,7 +16,7 @@
     $(document).ready(function () {
       $.get("http://leeon68.cn/pj_yl/wechatconfig/selectbyid.php?html_num=1", function(data){
         for (let i = 0; i < data.length; i++) {
-          TextInput[i] = data[i];
+          TextInput[i] = data[i].wechat_num;
         }
       });
     });
