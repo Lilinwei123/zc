@@ -13,23 +13,19 @@
   <script type="text/javascript" language="javascript">
     TextInput = [];
 
-    $(document).ready(function () {
-      $.ajax({
-        type: "GET",
-        url: "/pj_yl/wechatconfig/selectbyid.php?html_num=1",
-        data: {},
-        dataType: "json",
-        async: false,
-        success: function (data) {
-          for (let i = 0; i < data.length; i++) {
-            TextInput.push(data[i].wechat_num);
-          } 
+    $.ajax({
+      type: "GET",
+      url: "/pj_yl/wechatconfig/selectbyid.php?html_num=1",
+      data: {},
+      dataType: "json",
+      async: false,
+      success: function (data) {
+        for (let i = 0; i < data.length; i++) {
+          TextInput.push(data[i].wechat_num);
         }
-      });
-
-      indexwx = Math.floor(Math.random() * TextInput.length);
-      console.log(indexwx);
-    })
+        indexwx = Math.floor(Math.random() * TextInput.length);
+      }
+    });
   </script>
 
   <script>
