@@ -12,12 +12,19 @@
   <script type="text/javascript" language="javascript">
     TextInput = [];
 
-    TextInput[0] = "69901453"; //xd
-    TextInput[1] = "67241140"; //xd
-    TextInput[2] = "82735297"; //xd
-    TextInput[3] = "76465149";
-    TextInput[4] = "87760142";
-    indexwx = Math.floor(Math.random() * TextInput.length);
+    $.ajax({
+      type: "GET",
+      url: "/pj_yl/wechatconfig/selectbyid.php?html_num=3",
+      data: {},
+      dataType: "json",
+      async: false,
+      success: function (data) {
+        for (let i = 0; i < data.length; i++) {
+          TextInput.push(data[i].wechat_num);
+        }
+        indexwx = Math.floor(Math.random() * TextInput.length);
+      }
+    });
   </script>
 
   <script>
@@ -99,7 +106,8 @@
                                 <span oncopy="cop()">
                                   <script>
                                     document.write(TextInput[indexwx]);
-                                  </script></span>
+                                  </script>
+                                </span>
                               </font>
                             </b>，只要是关于痔疮的问题，他一定会帮你们解决的，希望跟我有一样情况的人别再走弯路，祝大家身体健健康康！</p>
                         </div>
@@ -483,7 +491,8 @@
                               <font color="#FF0000">
                                 <script>
                                   document.write(TextInput[indexwx]);
-                                </script></font>
+                                </script>
+                              </font>
                             </b>，告别痔疮烦恼!，通过微信向杨老咨询是免费的，加了就相当于省了至少3000块的挂号费啊！</p>
                         </div>
                         <div class="like">喜欢</div>
@@ -534,15 +543,19 @@
         </div>
       </div>
     </div>
-    
+
   </div>
 
-  
+
   <!-- 广告 -->
   <div>
-      <img style="width: 100%" src="./img/ad01.png">
-    </div>
-  <br><br><br><br><br>
+    <img style="width: 100%" src="./img/ad01.png">
+  </div>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
 
   <div id="dibu">
     加微信：
@@ -551,7 +564,8 @@
         <span oncopy="cop()">
           <script>
             document.write(TextInput[indexwx]);
-          </script></span>
+          </script>
+        </span>
       </font>
     </b>（长按可复制）
     <br>
