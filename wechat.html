@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+  <title>微信号添加</title>
+  <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <style>
+  </style>
+</head>
+
+<body style="background:#efefef">
+  <div id="app">
+    <label>编号：</label>
+    <input type="text" v-model="message">
+    <button @click="check">查询</button><br/><br/>
+    
+    <label>新增：</label>
+    <input type="text" v-model="addHtml" placeholder="页面编码">
+    <input type="text" v-model="addWechat" placeholder="微信号">
+    <button @click="add">新增</button><br/><br/>
+
+    <label>删除：</label>
+    <input type="text" v-model="deleteHtml" placeholder="页面编码">
+    <input type="text" v-model="deleteWechat" placeholder="微信号">
+    <button @click="deletewei">删除</button><br/><br/>
+
+    <table border="1">
+      <tr>
+        <th>编号</th>
+        <th>微信号</th>
+      </tr>
+      <tr v-for="(item, index) in listData" :key="index">
+        <td>{{item.html_num}}</td>
+        <td>{{item.wechat_num}}</td>
+      </tr>
+    </table>
+  </div>
+</body>
+
+<script>
+  var app = new Vue({
+    el: '#app',
+    data: {
+      listData: [],
+      message: '',
+      addHtml: '',
+      addWechat: '',
+      deleteHtml: '',
+      deleteWechat: ''
+    },
+
+    mounted() {
+      this.init();
+    },
+
+    methods: {
+      init() {
+        // this.listData = [{"html_num":"1","wechat_num":"69901453"},{"html_num":"1","wechat_num":"67241140"},{"html_num":"1","wechat_num":"82735297"},{"html_num":"1","wechat_num":"76465149"},{"html_num":"1","wechat_num":"56384105"},{"html_num":"1","wechat_num":"56143396"},{"html_num":"1","wechat_num":"84815037"},{"html_num":"1","wechat_num":"64048741"},{"html_num":"1","wechat_num":"54953487"},{"html_num":"1","wechat_num":"56102474"}];
+        let _this = this;
+        $.get("http://leeon68.cn/pj_yl/wechatconfig/selectbyid.php", function(data){
+          _this.listData = data;
+        });
+      },
+
+      check() {
+        let _this = this;
+        console.log(_this.message);
+        $.get("http://leeon68.cn/pj_yl/wechatconfig/selectbyid.php?html_num=" + _this.message, function(data){
+          _this.listData = data;
+        });
+      },
+
+      add() {
+        let _this = this;
+        console.log('_this.addHtml====', _this.addHtml);
+        console.log('_this.addWechat====', _this.addWechat);
+        $.get("http://leeon68.cn/pj_yl/wechatconfig/insert.php?html_num=" + _this.addHtml + "&wechat_num=" + _this.addWechat, function(data){
+          alert('删除成功');
+
+          // 刷新页面
+          _this.check();
+        });
+      },
+
+      deletewei() {
+        let _this = this;
+        console.log('_this.deleteHtml====', _this.deleteHtml);
+        console.log('_this.deleteWechat====', _this.deleteWechat);
+        $.get("http://leeon68.cn/pj_yl/wechatconfig/delete.php?html_num=" + _this.deleteHtml + "&wechat_num=" + _this.deleteWechat, function(data){
+          alert('添加成功');
+
+          // 刷新页面
+          _this.check();
+        });
+      }
+    }
+  })
+</script>
+
+</html>
