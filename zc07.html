@@ -9,15 +9,23 @@
   <meta name="format-detection" content="telephone=no">
   <link rel="stylesheet" href="./css/zc03.css">
   <title>早知道痔疮这么容易就能好，我还TMD做什么手术啊！屁股都差点割烂了！</title>
+  <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
   <script type="text/javascript" language="javascript">
     TextInput = [];
 
-    TextInput[0] = "89584367"; //xd
-    TextInput[1] = "50914829";
-    TextInput[2] = "85383054";
-    TextInput[3] = "50958457";
-
-    indexwx = Math.floor(Math.random() * TextInput.length);
+    $.ajax({
+      type: "GET",
+      url: "/pj_yl/wechatconfig/selectbyid.php?html_num=7",
+      data: {},
+      dataType: "json",
+      async: false,
+      success: function (data) {
+        for (let i = 0; i < data.length; i++) {
+          TextInput.push(data[i].wechat_num);
+        }
+        indexwx = Math.floor(Math.random() * TextInput.length);
+      }
+    });
   </script>
 
   <script>
