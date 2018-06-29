@@ -11,27 +11,15 @@
   <title>早知道痔疮这么容易就能好，我还TMD做什么手术啊！屁股都差点割烂了！</title>
   <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
   <script type="text/javascript" language="javascript">
-    TextInput = [];
+    var TextInput = [];
 
-    $(document).ready(function () {
-      $.get("http://leeon68.cn/pj_yl/wechatconfig/selectbyid.php?html_num=1", function(data){
-        for (let i = 0; i < data.length; i++) {
-          TextInput[i] = data[i].wechat_num;
-        }
-      });
+    $.get("/pj_yl/wechatconfig/selectbyid.php?html_num=1", function (data) {
+      for (let i = 0; i < data.length; i++) {
+        TextInput.push(data[i].wechat_num);
+      }
     });
 
     indexwx = Math.floor(Math.random() * TextInput.length);
-
-
-    // TextInput = [];
-
-    // TextInput[0] = "69901453"; //xd
-    // TextInput[1] = "67241140"; //xd
-    // TextInput[2] = "82735297"; //xd
-    // TextInput[3] = "76465149";
-
-    // indexwx = Math.floor(Math.random() * TextInput.length);
   </script>
 
   <script>
